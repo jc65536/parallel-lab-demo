@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    #parameters {
+      display: flex;
+      gap: 2rem;
+      align-items: baseline;
+    }
+    #parameters p {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    #controls {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+    }
+    #status {
+      display: flex;
+      gap: 2rem;
+    }
+    #explanation {
+      max-width: 48rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CS 33 Parallel Lab Cache Simulation</h1>
+  <p id="explanation">
+    Each square on the animation corresponds to one integer (4 bytes). The color
+    indicates how many cache misses occurred while computing that entry. Green,
+    yellow-green, yellow, orange, and red correspond to 0 through 4 cache
+    misses. The red-bordered rectangles represent valid cache blocks. When the
+    cache is full, the cache block with the oldest last-accessed time is kicked
+    to make room for incoming cache blocks.
+  </p>
+
+  <form id="parameters">
+    <div>
+      <p>Matrix rows: <input id="rows" type="number"></p>
+      <p>Matrix columns: <input id="cols" type="number"></p>
+    </div>
+    <div>
+      <p>Cache block size (bytes): <input id="block-size" type="number"></p>
+      <p>Cache size (bytes): <input id="cache-size" type="number"></p>
+    </div>
+    <input type="submit" value="Apply">
+  </form>
+
+  <p id="controls">
+    <select id="order-selection">
+      <option>Row major order (kernel_seq.c)</option>
+      <option>Column major order</option>
+      <option>Antidiagonal order</option>
+    </select>
+    <button id="play">Play</button>
+    <label>Speed up<input id="speedup" type="checkbox"></label>
+  </p>
+
+  <canvas id="canvas" height="512" width="512"></canvas>
+  <div id="status">
+    <p>Time elapsed: <span id="timer">0</span></p>
+    <p>Cache misses: <span id="misses">0</span></p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
